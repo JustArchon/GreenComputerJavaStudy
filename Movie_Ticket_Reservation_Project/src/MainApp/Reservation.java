@@ -128,8 +128,6 @@ public class Reservation {
 						e.printStackTrace();
 					}
 				}
-				
-			
 			}
 				
 		} catch(Exception e) {

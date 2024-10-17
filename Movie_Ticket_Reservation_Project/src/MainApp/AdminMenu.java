@@ -21,13 +21,13 @@ public class AdminMenu extends AbstractMenu{
 			
 			switch(input) {
 			case "1":
-				movie_reservaiton();
+				admin_movie_add();
 				break;
 			case "2":
-				movie_reservation_check();
+				admin_movie_list();
 				break;
 			case "3":
-				movie_reservation_cancle();
+				admin_movie_delete();
 				break;
 			case "b":
 				adminEnable = false;
@@ -36,7 +36,34 @@ public class AdminMenu extends AbstractMenu{
 		}
 	}
 	
-	public void admin_movie_add() {}
-	public void admin_movie_list() {}
-	public void admin_movie_delete() {}
+	public void admin_movie_add() {
+		Movie movie = new Movie();
+		try {
+			movie.adminMovieAdd();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void admin_movie_list() {
+		Movie movie = new Movie();
+		try {
+			movie.adminMovieListView();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void admin_movie_delete() {
+		Movie movie = new Movie();
+		try {
+			movie.adminMovieDelete();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
