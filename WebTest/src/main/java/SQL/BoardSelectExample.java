@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BoardSelectExample {
-	Connection conn = null;
 	public static void main(String[] args) {
 		Connection conn = null;
 		try {

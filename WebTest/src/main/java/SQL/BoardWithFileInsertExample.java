@@ -24,12 +24,12 @@ public class BoardWithFileInsertExample {
 			// 매개변수화된 SQL 문 작성
 			String sql = "" + 
 						"INSERT INTO boards (bno, btitle, bcontent, bwriter, bdate, bfilename, bfiledata)" + 
-						"VALUES (1, ?, ?, ?, SYSDATE, ?, ?)";
+						"VALUES (3, ?, ?, ?, SYSDATE, ?, ?)";
 			//PreparedStatement 얻기 및 값 지정
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"bno"});
-			pstmt.setString(1, "눈오는 날");
-			pstmt.setString(2, "함박눈이 내려요.");
-			pstmt.setString(3, "winter");
+			pstmt.setString(1, "눈안오는 날");
+			pstmt.setString(2, "함박눈이 안내려요.");
+			pstmt.setString(3, "unwinter");
 			pstmt.setString(4, "snow.jpg");
 			pstmt.setBlob(5, new FileInputStream("c:\\Temp/snow.jpg"));
 			
