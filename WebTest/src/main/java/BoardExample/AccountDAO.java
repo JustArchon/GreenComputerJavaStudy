@@ -129,9 +129,9 @@ public class AccountDAO {
 			
 			//PreparedStatement 닫기
 			pstmt.close();
-}catch(Exception e) {
-		e.printStackTrace();
-}finally {
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
 		if(conn != null) {
 			try {
 				conn.close();
