@@ -47,7 +47,8 @@ public class MainPage {
 			switch(input) {
 			case "1":
 				if(memberType.equals("student")){
-					
+					GDAO.getPersonalScores(loginID);
+					break;
 				} else if(memberType.equals("teacher")) {
 					boolean selectloop = true;
 					while(selectloop) {
@@ -58,7 +59,7 @@ public class MainPage {
 					String input2 = sc.nextLine();
 					switch(input2) {
 					case "1":
-//						GDAO.
+						GDAO.getStudentGrade();
 						break;
 					case "2":
 						System.out.println("------------------------------------------------------------------");
@@ -108,7 +109,7 @@ public class MainPage {
 				if(memberType.equals("student")){
 					
 				} else if(memberType.equals("teacher")) {
-					
+					GDAO.getStudentGrade();
 				} else if (memberType.equals("admin")){
 					
 				} else {
@@ -147,17 +148,53 @@ public class MainPage {
 				}
 				break;
 			case "3":
-				System.out.println("------------------------------------------------------------------");
-				System.out.println(loginID +" 개인정보 수정 페이지 수정할 내용만 적으십시오.");
-				System.out.println("------------------------------------------------------------------");
-				System.out.print("비밀번호: ");
-				String password = sc.nextLine();
-				System.out.print("이름: ");
-				String name = sc.nextLine();
-				System.out.print("이메일: ");
-				String email = sc.nextLine();
-				ADAO.edit_profile(loginID, password, name, email);
-				break;
+				String memberType2 = "";
+				if(memberType.equals("student") || memberType.equals("teacher")){
+					System.out.println("------------------------------------------------------------------");
+					System.out.println("Profile 메뉴: 1.정보수정 | 2.계정탈퇴 | 3.나가기 ");
+					System.out.println("------------------------------------------------------------------");
+					System.out.print("메뉴선택: ");
+					String input3 = sc.nextLine();
+					switch(input3) {
+					case "1":
+						System.out.println("------------------------------------------------------------------");
+						System.out.println(loginID +" 개인정보 수정 페이지 수정할 내용만 적으십시오.");
+						System.out.println("------------------------------------------------------------------");
+						System.out.print("비밀번호: ");
+						String password = sc.nextLine();
+						System.out.print("이름: ");
+						String name = sc.nextLine();
+						System.out.print("휴대전화 번호: ");
+						String phonenumber = sc.nextLine();
+						System.out.print("이메일: ");
+						String email = sc.nextLine();
+						if(memberType.equals("student")) {
+							memberType2 = "S";
+						} else {
+							memberType2 = "T";
+						}
+						ADAO.edit_profile(loginID, password, name, phonenumber, email, memberType2);
+						break;
+					case "2":
+						System.out.println("------------------------------------------------------------------");
+						System.out.println(loginID+"의 계정을 탈퇴합니다. 탈퇴하시려면 yes를 입력하십시오.");
+						System.out.println("------------------------------------------------------------------");
+							System.out.println("정말로 회원을 탈퇴하시겠습니까? ");
+							String check = sc.nextLine();
+							if(check.equals("yes")) {
+								if(memberType.equals("student")) {
+									ADAO.delete_account(loginID,"S");
+								} else {
+									ADAO.delete_account(loginID,"T");
+								}
+								memberType = "guest";
+								loginID = "";
+							}
+						break;
+					case "3":
+						break;
+					}
+				}
 			case "4":
 				memberType = "guest";
 				loginID = "";
@@ -170,3 +207,4 @@ public class MainPage {
 		}
 	}
 }
+
