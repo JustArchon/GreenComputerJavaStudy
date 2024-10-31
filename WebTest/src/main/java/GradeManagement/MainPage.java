@@ -5,9 +5,10 @@ import java.util.Scanner;
 import BoardExample.BoardDAO;
 
 public class MainPage {
-	public void mainMenu() {
+	public void mainMenu() throws Exception {
 		GradeDAO GDAO = new GradeDAO();
 		AccountDAO ADAO = new AccountDAO();
+		MemberDAO MDAO = new MemberDAO();
 		Scanner sc = new Scanner(System.in);
 		String input = "";
 		String memberType = "guest";
@@ -32,8 +33,8 @@ public class MainPage {
 				System.out.println("4: 로그아웃");
 			} else if (memberType.equals("admin")){
 				System.out.println("1: 성적 관리");
-				System.out.println("2: 학생 관리 ");
-				System.out.println("3: 개인정보 수정");
+				System.out.println("2: 교직원 및 학생 관리 ");
+				System.out.println("3: 과목 관리");
 				System.out.println("4: 로그아웃");
 			} else {
 				System.out.println("1: 로그인");
@@ -79,6 +80,22 @@ public class MainPage {
 					}
 				}
 				} else if (memberType.equals("admin")){
+					boolean selectloop = true;
+					while(selectloop) {
+					System.out.println("------------------------------------------------------------------");
+					System.out.println("성적관리 메뉴: 1.학생성적 조회 | 2. 나가기 ");
+					System.out.println("------------------------------------------------------------------");
+					System.out.print("메뉴선택: ");
+					String input2 = sc.nextLine();
+					switch(input2) {
+					case "1":
+						GDAO.getStudentGrade();
+						break;
+					case "2":
+						selectloop = false;
+						break;
+					}
+				}
 					
 				} else {
 					LoginDAO LDAO = new LoginDAO();
@@ -105,12 +122,40 @@ public class MainPage {
 				}
 				break;
 			case "2":
-				
 				if(memberType.equals("student")){
-					
 				} else if(memberType.equals("teacher")) {
-					GDAO.getStudentGrade();
+					boolean selectloop = true;
+					while(selectloop) {
+					System.out.println("------------------------------------------------------------------");
+					System.out.println("학생관리 메뉴: 1.학생 조회 | 2. 나가기 ");
+					System.out.println("------------------------------------------------------------------");
+					System.out.print("메뉴선택: ");
+					String input2 = sc.nextLine();
+					switch(input2) {
+					case "1":
+						MDAO.getStudentList();
+						break;
+					case "2":
+						selectloop = false;
+						break;
+					}
+				}
 				} else if (memberType.equals("admin")){
+					boolean selectloop = true;
+					while(selectloop) {
+					System.out.println("------------------------------------------------------------------");
+					System.out.println("학생, 교직원 관리 메뉴: 1.학생, 교직원 조회 | 4. 나가기 ");
+					System.out.println("------------------------------------------------------------------");
+					System.out.print("메뉴선택: ");
+					String input2 = sc.nextLine();
+					switch(input2) {
+					case "1":
+						MDAO.getStudentList();
+						break;
+					case "2":
+						selectloop = false;
+						break;
+					}
 					
 				} else {
 					System.out.println("-----------------------------------------------------------------------");
@@ -194,6 +239,9 @@ public class MainPage {
 					case "3":
 						break;
 					}
+				}else if(memberType.equals("admin")) {
+					
+					break;
 				}
 			case "4":
 				memberType = "guest";
