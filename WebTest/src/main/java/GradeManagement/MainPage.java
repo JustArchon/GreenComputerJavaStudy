@@ -156,6 +156,7 @@ public class MainPage {
 						selectloop = false;
 						break;
 					}
+				}
 					
 				} else {
 					System.out.println("-----------------------------------------------------------------------");
