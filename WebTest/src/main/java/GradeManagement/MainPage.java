@@ -44,9 +44,9 @@ public class MainPage {
 			
 			System.out.println("q: 종료");
 			System.out.print("메뉴를 선택하세요:");
-			input = sc.nextLine();
+			String maininput = sc.nextLine();
 			
-			switch(input) {
+			switch(maininput) {
 			case "1":
 				if(memberType.equals("student")){
 					GDAO.getPersonalScores(loginID);
@@ -78,8 +78,8 @@ public class MainPage {
 					case "3":
 						selectloop = false;
 						break;
+						}
 					}
-				}
 				} else if (memberType.equals("admin")){
 					boolean selectloop = true;
 					while(selectloop) {
@@ -248,6 +248,8 @@ public class MainPage {
 				break;
 			case "3":
 				String memberType2 = "";
+				boolean selectloop = true;
+				while(selectloop) {
 				if(memberType.equals("student") || memberType.equals("teacher")){
 					System.out.println("------------------------------------------------------------------");
 					System.out.println("Profile 메뉴: 1.정보수정 | 2.계정탈퇴 | 3.나가기 ");
@@ -291,11 +293,11 @@ public class MainPage {
 							}
 						break;
 					case "3":
+						selectloop = false;
 						break;
 					}
+					
 				}else if(memberType.equals("admin")) {
-					boolean selectloop = true;
-					while(selectloop) {
 					System.out.println("--------------------------------------------------------------------------");
 					System.out.println("과목관리 메뉴: 1.과목 조회 | 2.과목 추가 | 3.과목 삭제 | 4.교직원 과목 변경 | 5. 나가기 ");
 					System.out.println("--------------------------------------------------------------------------");
@@ -336,9 +338,10 @@ public class MainPage {
 					case "5":
 						selectloop = false;
 						break;
+						}
 					}
 				}
-			}
+				break;
 			case "4":
 				memberType = "guest";
 				loginID = "";
